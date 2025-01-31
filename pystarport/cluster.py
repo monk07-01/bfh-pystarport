@@ -48,7 +48,7 @@ class ClusterCLI:
     def __init__(
         self,
         data,
-        chain_id="chainmaind",
+        chain_id="bfhevmd",
         cmd=None,
         zemu_address=ZEMU_HOST,
         zemu_button_port=ZEMU_BUTTON_PORT,
@@ -1150,7 +1150,7 @@ def relayer_chain_config_hermes(data_dir, chain, relayer_chains_config):
         "account_prefix": chain.get("account-prefix", "cro"),
         "store_prefix": "ibc",
         "max_gas": 300000,
-        "gas_price": {"price": 0, "denom": "basecro"},
+        "gas_price": {"price": 0, "denom": "basebfh"},
         "trusting_period": "336h",
     }
     raw = subprocess.check_output(["hermes", "--version"]).decode("utf-8")
@@ -1182,7 +1182,7 @@ def relayer_chain_config_rly(data_dir, chain, relayer_chains_config):
     derivation = address_type.get("derivation")
     gas_price = chain_config.get("gas_price", {})
     price = gas_price.get("price", 0)
-    denom = gas_price.get("denom", "basecro")
+    denom = gas_price.get("denom", "basebfh")
     prices = f"{price}{denom}"
     precompiled = chain_config.get("precompiled_contract_address", "")
     return {
@@ -1193,7 +1193,7 @@ def relayer_chain_config_rly(data_dir, chain, relayer_chains_config):
             "chain-id": chain_id,
             "rpc-addr": f"http://127.0.0.1:{rpc_port}",
             "json-rpc-addr": f"http://127.0.0.1:{json_rpc_addr}",
-            "account-prefix": chain.get("account-prefix", "cro"),
+            "account-prefix": chain.get("account-prefix", "bfh"),
             "keyring-backend": chain_config.get("keyring-backend", "test"),
             "gas-adjustment": chain_config.get("gas_multiplier", 1.2),
             "feegrants": chain_config.get("feegrants", None),
@@ -1395,7 +1395,7 @@ def supervisord_ini_group(chain_ids, is_hermes):
     }
     command = "hermes --config relayer.toml start"
     if not is_hermes:
-        command = "rly start chainmain-cronos --home relayer"
+        command = "rly start bfhevm --home relayer"
     cfg["program:relayer-demo"] = dict(
         COMMON_PROG_OPTIONS,
         directory=directory,
@@ -1412,8 +1412,8 @@ def docker_compose_yml(cmd, validators, data_dir, image):
         "services": {
             f"node{i}": {
                 "image": image,
-                "command": "chaind start",
-                "volumes": [f"{data_dir.absolute() / f'node{i}'}:/.chain-maind:Z"],
+                "command": "bfhevmd start",
+                "volumes": [f"{data_dir.absolute() / f'node{i}'}:/.bfhevmd:Z"],
             }
             for i, val in enumerate(validators)
         },
@@ -1474,7 +1474,7 @@ def edit_app_cfg(path, base_port, app_config):
             "snapshot-interval": 5,
             "snapshot-keep-recent": 10,
         },
-        "minimum-gas-prices": "0basecro",
+        "minimum-gas-prices": "0basebfh",
     }
 
     app_config = format_value(

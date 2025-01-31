@@ -1,5 +1,5 @@
 test:
-	@(cd pystarport/tests && poetry run pytest)
+	@(cd bfh-pystarport/tests && poetry run pytest)
 
 lint:
 	@poetry run flake8 --show-source --count --statistics

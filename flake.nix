@@ -57,7 +57,7 @@
         };
         apps.default = {
           type = "app";
-          program = "${packages.default}/bin/pystarport";
+          program = "${packages.default}/bin/bfh-pystarport";
         };
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -68,7 +68,7 @@
             (pkgs.poetry2nix.mkPoetryEditablePackage {
               projectDir = ./.;
               editablePackageSources = {
-                pystarport = ./pystarport;
+                bfh-pystarport = ./bfh-pystarport;
               };
             })
           ];

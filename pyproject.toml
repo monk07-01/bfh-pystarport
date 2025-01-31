@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "pystarport"
+name = "bfh-pystarport"
 version = "0.2.5"
 description = "Spawn local devnets for cosmos-sdk chains"
 authors = ["chain-dev-team <chain-dev@crypto.com>"]
 license = "Apache"
-keywords = ["CRO", "blockchain", "crypto.com", "cosmos"]
+keywords = ["BFH", "blockchain", "BFH-EVM", "cosmos"]
 readme = "README.md"
-homepage = "https://github.com/crypto-com/pystarport"
-repository = "https://github.com/crypto-com/pystarport"
+homepage = "https://github.com/monk07-01/bfh-pystarport"
+repository = "https://github.com/monk07-01/bfh-pystarport"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -33,7 +33,7 @@ flake8-black = "^0"
 flake8-isort = "^6.1"
 
 [tool.poetry.scripts]
-pystarport = "pystarport.cli:main"
+bfh-pystarport = "bfh-pystarport.cli:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

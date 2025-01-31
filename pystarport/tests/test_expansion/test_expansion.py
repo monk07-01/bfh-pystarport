@@ -19,16 +19,16 @@ def _get_base_config():
 )
 def test_expansion(type, func):
     parent = Path(__file__).parent
-    cronos_has_dotenv = parent / ("cronos_has_dotenv" + type)
-    cronos_no_dotenv = parent / ("cronos_no_dotenv" + type)
-    cronos_has_posix_no_dotenv = parent / ("cronos_no_dotenv" + type)
+    bfhevm_has_dotenv = parent / ("bfhevm_has_dotenv" + type)
+    bfhevm_no_dotenv = parent / ("bfhevm_no_dotenv" + type)
+    bfhevm_has_posix_no_dotenv = parent / ("bfhevm_no_dotenv" + type)
     base_config = _get_base_config()
     # `expand_yaml` is backward compatible, not expanded, and no diff
-    config = func(cronos_no_dotenv, None)
+    config = func(bfhevm_no_dotenv, None)
     assert base_config == config
 
     # `expand_yaml` is expanded but no diff
-    config = func(cronos_has_dotenv, None)
+    config = func(bfhevm_has_dotenv, None)
     assert not DeepDiff(
         base_config,
         config,
@@ -37,14 +37,14 @@ def test_expansion(type, func):
 
     # overriding dotenv with relative path is expanded and has diff)
     dotenv = "dotenv1"
-    config = func(cronos_has_dotenv, dotenv)
+    config = func(bfhevm_has_dotenv, dotenv)
     assert DeepDiff(
         base_config,
         config,
         ignore_order=True,
     ) == {
         "values_changed": {
-            "root['cronos_777-1']['validators'][0]['mnemonic']": {
+            "root['bfhevm_777-1']['validators'][0]['mnemonic']": {
                 "new_value": "good",
                 "old_value": "visit craft resemble online window solution west chuckle "
                 "music diesel vital settle comic tribe project blame bulb armed flower "
@@ -57,14 +57,14 @@ def test_expansion(type, func):
 
     # overriding dotenv with absolute path is expanded and has diff
     dotenv = os.path.abspath(path / "dotenv1")
-    config = func(cronos_has_dotenv, dotenv)
+    config = func(bfhevm_has_dotenv, dotenv)
     assert DeepDiff(
         base_config,
         config,
         ignore_order=True,
     ) == {
         "values_changed": {
-            "root['cronos_777-1']['validators'][0]['mnemonic']": {
+            "root['bfhevm_777-1']['validators'][0]['mnemonic']": {
                 "new_value": "good",
                 "old_value": "visit craft resemble online window solution west chuckle "
                 "music diesel vital settle comic tribe project blame bulb armed flower "
@@ -75,7 +75,7 @@ def test_expansion(type, func):
 
     # overriding dotenv with absolute path is expanded and no diff
     dotenv = os.path.abspath(path / "dotenv")
-    config = func(cronos_has_posix_no_dotenv, dotenv)
+    config = func(bfhevm_has_posix_no_dotenv, dotenv)
     assert not DeepDiff(
         base_config,
         config,

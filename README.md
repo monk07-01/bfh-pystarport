@@ -7,24 +7,24 @@ it can also be used for any cosmos-sdk based projects.
 a typical configuration for a devnet is like this:
 
 ```
-chainmaind:
-  cmd: chain-maind  # chain binary to use, optional
+bfhevmd:
+  cmd: bfhevmd  # chain binary to use, optional
   validators:  # genesis validators
-    - coins: 10cro
-      staked: 10cro
-    - coins: 10cro
-      staked: 10cro
+    - coins: 10abfh
+      staked: 10abfh
+    - coins: 10abfh
+      staked: 10abfh
   accounts:  # genesis accounts
     - name: community
-      coins: 100cro
+      coins: 100abfh
     - name: ecosystem
-      coins: 200cro
+      coins: 200abfh
     - name: reserve
-      coins: 200cro
-      vesting_coins: 100cro # if not provided, the all of coins will be vested
+      coins: 200abfh
+      vesting_coins: 100bfh # if not provided, the all of coins will be vested
       vesting: "1d"
     - name: launch
-      coins: 100cro
+      coins: 100abfh
   genesis:  # patch genesis states
    app_state:
      staking:
@@ -66,7 +66,7 @@ FLAGS
         the base port to use, the service ports of different nodes are calculated based on this
     --cmd=CMD
         Type: str
-        Default: 'chain-maind'
+        Default: 'bfhevmd'
         the chain binary to use
 ```
 
@@ -82,8 +82,8 @@ For example, with default base port `26650`, the url of api servers of the nodes
 
 > The swagger doc of node0 is http://127.0.0.1:26654/swagger/
 >
-> The default rpc port used by `chain-maind` is `26657`, that's the default node0's rpc port, so you can use
-> `chain-maind` without change to access node0's rpc.
+> The default rpc port used by `bfhevmd` is `26657`, that's the default node0's rpc port, so you can use
+> `bfhevmd` without change to access node0's rpc.
 
 ## Supervisor
 
@@ -114,7 +114,7 @@ supervisor>
 
 ## Cli
 
-After started the chain, you can use `chain-maind` cli directly, there are also some wrapper commands provided by
+After started the chain, you can use `bfhevmd` cli directly, there are also some wrapper commands provided by
 `pystarport cli`. It understands the directory structure and port rules, also assuming `keyring-backend=test`, and there
 are shortcuts for commonly used commands, so arguments are shorter.
 
@@ -148,12 +148,12 @@ When used with `docker-compose` or multiple machines, you need to config hostnam
 
 ```yaml
 validators:
-  - coins: 10cro
-    staked: 10cro
+  - coins: 10abfh
+    staked: 10abfh
     base_port: 26650
     hostname: node0
-  - coins: 10cro
-    staked: 10cro
+  - coins: 10abfh
+    staked: 10abfh
     base_port: 26650
     hostname: node1
 ```
@@ -167,14 +167,14 @@ It can setup multiple devnets at once, and connect them with ibc relayer.
 ```
 ibc-0:
   validators:
-    - coins: 10cro
-      staked: 10cro
+    - coins: 10abfh
+      staked: 10abfh
       base_port: 26650
-    - coins: 10cro
-      staked: 10cro
+    - coins: 10abfh
+      staked: 10abfh
   accounts:
     - name: relayer
-      coins: 100cro
+      coins: 100abfh
   genesis:
     app_state:
       transfer:
@@ -183,15 +183,15 @@ ibc-0:
           send_enabled: true
 ibc-1:
   validators:
-    - coins: 10cro
-      staked: 10cro
+    - coins: 10abfh
+      staked: 10abfh
       base_port: 26750
-    - coins: 10cro
-      staked: 10cro
+    - coins: 10abfh
+      staked: 10abfh
       base_port: 26760
   accounts:
     - name: relayer
-      coins: 100cro
+      coins: 100abfh
   genesis:
     app_state:
       transfer:

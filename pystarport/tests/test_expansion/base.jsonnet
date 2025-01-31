@@ -1,34 +1,34 @@
 {
-  'cronos_777-1': {
-    cmd: 'cronosd',
+  'bfhevm_777-1': {
+    cmd: 'bfhevmd',
     'start-flags': '--trace',
     'app-config': {
-      'minimum-gas-prices': '5000000000000basetcro',
+      'minimum-gas-prices': '5000000000000basebfh',
       'json-rpc': {
         address: '127.0.0.1:{EVMRPC_PORT}',
         'ws-address': '127.0.0.1:{EVMRPC_PORT_WS}',
       },
     },
     validators: [{
-      coins: '1000000000000000000stake,10000000000000000000000basetcro',
-      staked: '1000000000000000000stake',
+      coins: '1000000000000000000abfh,10000000000000000000000basebfh',
+      staked: '1000000000000000000abfh',
       mnemonic: 'visit craft resemble online window solution west chuckle music diesel vital settle comic tribe project blame bulb armed flower region sausage mercy arrive release',
     }, {
-      coins: '1000000000000000000stake,10000000000000000000000basetcro',
-      staked: '1000000000000000000stake',
+      coins: '1000000000000000000abfh,10000000000000000000000basebfh',
+      staked: '1000000000000000000abfh',
       mnemonic: 'direct travel shrug hand twice agent sail sell jump phone velvet pilot mango charge usual multiply orient garment bleak virtual action mention panda vast',
     }],
     accounts: [{
       name: 'community',
-      coins: '10000000000000000000000basetcro',
+      coins: '10000000000000000000000basebfh',
       mnemonic: 'notable error gospel wave pair ugly measure elite toddler cost various fly make eye ketchup despair slab throw tribe swarm word fruit into inmate',
     }, {
       name: 'signer1',
-      coins: '20000000000000000000000basetcro',
+      coins: '20000000000000000000000basebfh',
       mnemonic: 'shed crumble dismiss loyal latin million oblige gesture shrug still oxygen custom remove ribbon disorder palace addict again blanket sad flock consider obey popular',
     }, {
       name: 'signer2',
-      coins: '30000000000000000000000basetcro',
+      coins: '30000000000000000000000basebfh',
       mnemonic: 'night renew tonight dinner shaft scheme domain oppose echo summer broccoli agent face guitar surface belt veteran siren poem alcohol menu custom crunch index',
     }],
     genesis: {
@@ -41,14 +41,14 @@
       app_state: {
         evm: {
           params: {
-            evm_denom: 'basetcro',
+            evm_denom: 'basebfh',
           },
         },
-        cronos: {
+        bfhevm: {
           params: {
-            cronos_admin: 'crc12luku6uxehhak02py4rcz65zu0swh7wjsrw0pp',
+            bfhevm_admin: 'bfh1r44y0d23zhr3eqcz3skmhe7m3jsys26mxcdyt5',
             enable_auto_deployment: true,
-            ibc_cro_denom: 'ibc/6411AE2ADA1E73DB59DB151A8988F9B7D5E7E233D8414DB6817F8F1A01611F86',
+            ibc_bfh_denom: 'ibc/6411AE2ADA1E73DB59DB151A8988F9B7D5E7E233D8414DB6817F8F1A01611F86',
           },
         },
         gov: {
@@ -59,7 +59,7 @@
             max_deposit_period: '10s',
             min_deposit: [
               {
-                denom: 'basetcro',
+                denom: 'basebfh',
                 amount: '1',
               },
             ],

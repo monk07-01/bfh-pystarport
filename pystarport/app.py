@@ -2,7 +2,7 @@ import os
 
 CHAIN = ""  # edit by nix-build
 if not CHAIN:
-    CHAIN = os.environ.get("CHAIN_MAIND", "chain-maind")
-IMAGE = "docker.pkg.github.com/crypto-org-chain/chain-main/chain-main-pystarport:latest"
+    CHAIN = os.environ.get("BFHEVMD", "bfhevmd")
+IMAGE = "docker.pkg.github.com/monk07-01/bfhevm/bfh-pystarport:latest"
 
 SUPERVISOR_CONFIG_FILE = "tasks.ini"

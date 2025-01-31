@@ -41,7 +41,7 @@ def module_address(name):
     :param name: name of module account, values: {options}
     """
     data = hashlib.sha256(ModuleAccount(name).value.encode()).digest()[:20]
-    return bech32.bech32_encode("cro", bech32.convertbits(data, 8, 5))
+    return bech32.bech32_encode("bfh", bech32.convertbits(data, 8, 5))
 
 
 class ChainCommand:
@@ -69,7 +69,7 @@ class ChainCommand:
         return "Available Commands" in output.decode()
 
     def __call__(self, cmd, *args, stdin=None, stderr=subprocess.STDOUT, **kwargs):
-        "execute chain-maind"
+        "execute bfhevmd"
         args = " ".join(build_cli_args_safe(cmd, *args, **kwargs))
         return interact(f"{self.cmd} {args}", input=stdin, stderr=stderr)
 
@@ -485,7 +485,7 @@ class CosmosCLI:
             rsp = self.event_query_tx_for(rsp["txhash"])
         return rsp
 
-    # to_addr: croclcl1...  , from_addr: cro1...
+    # to_addr: bfhclcl1...  , from_addr: bfh1...
     def unbond_amount(self, to_addr, amount, from_addr, event_query_tx=True, **kwargs):
         rsp = json.loads(
             self.raw(
@@ -507,7 +507,7 @@ class CosmosCLI:
             rsp = self.event_query_tx_for(rsp["txhash"])
         return rsp
 
-    # to_validator_addr: crocncl1...  ,  from_from_validator_addraddr: crocl1...
+    # to_validator_addr: bfhcncl1...  ,  from_from_validator_addraddr: bfhcl1...
     def redelegate_amount(
         self,
         to_validator_addr,

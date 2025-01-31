@@ -125,10 +125,10 @@ class CLI:
         """
         start(Path(data), quiet)
 
-    def chaind(self, *args, **kwargs):
+    def bfhevmd(self, *args, **kwargs):
         """
         start one node whose home directory is already initialized
-        can be used to launch chain-maind
+        can be used to launch bfhevmd
 
         :param home: home directory
         """
@@ -171,7 +171,7 @@ class CLI:
 
         main(("-c", Path(data) / SUPERVISOR_CONFIG_FILE, *args))
 
-    def cli(self, *args, data: str = "./data", chain_id: str = "chainmaind"):
+    def cli(self, *args, data: str = "./data", chain_id: str = "bfhevmd"):
         """
         pystarport CLI
 
@@ -185,7 +185,7 @@ class CLI:
         *args,
         data: str = "./data",
         config: str = "./bot.yaml",
-        chain_id: str = "chainmaind",
+        chain_id: str = "bfhevmd",
         node_rpc: str = None,
     ):
         """
